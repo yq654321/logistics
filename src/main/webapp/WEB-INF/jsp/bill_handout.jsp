@@ -13,7 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>单据管理</title>
-
     <link href="../../statics/bootstrap/css/bootstrap-table.css" rel="stylesheet">
     <link href="../../statics/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="../../statics/bootstrap/js/jquery.min.js"></script>

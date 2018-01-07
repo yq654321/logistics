@@ -8,7 +8,7 @@ public class PageControler {
 
     @RequestMapping("index")
     public String index(){
-        return "index";
+        return "bill_handout";
     }
 
     @RequestMapping("Config_datadict")

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shadow.dao.UserDao">
+    <sql id="Base_Column_List">
+        user_id, uname, password,createtime
+    </sql>
+
+    <!--根据用户名字查询-->
+    <select id="getByUsername" parameterType="String" resultType="UserEntity">
+        select * from user where uname=#{uname}
+    </select>
+
+    <!--用户表与角色表联表查中间表-->
+    <select id="getRole" parameterType="String" resultType="String">
+     SELECT u.*,r.* FROM `user` u,role r,user_role ur where u.user_id = ur.user_id and r.role_id = ur.role_id and  u.uname=#{uname}
+    </select>
+    <!--用户表与权限表联表查中间表-->
+    <select id="getAuthorization" parameterType="String" resultType="String">
+      SELECT u.*,a.* FROM `user` u,authorization a,authorization_user au where u.user_id = au.user_id and a.anthor_id = au.author_id and  u.uname=#{uname}
+    </select>
+    <!--根据用户ID多表查询菜单-->
+    <select id="getconfig" parameterType="int" resultType="Config_menuEntity">
+    SELECT c.* FROM `user` u,role r,authorization a,config_menu c ,
+    user_role ur,authorization_user au, authorization_role ar,config_author ca
+    where u.user_id=au.user_id=ur.user_id and
+    ur.role_id=r.role_id=ar.role_id and
+    au.author_id=a.anthor_id=ar.author_id =ca.author_id and
+    ca.config_menu_id=c.config_menu_id and
+    u.user_id=#{user_id}
+
+    group by c.config_menu_name
+    </select>
+    <!--<select id="selectall"  resultType="UserEntity">-->
+    <!--SELECT  <include refid="Base_Column_List"/>  from  user WHERE uname=#{uname} and password=#{password}-->
+    <!--</select>-->
+
+    <!--  <update id="updatestudent" parameterType="StudentEntity">
+          UPDATE student SET pname=#{pname},pwd=#{pwd},age=#{age},address=#{address},sex=${sex} WHERE pid=#{pid}
+      </update>
+
+      <insert id="addstudent" parameterType="StudentEntity">
+          INSERT  INTO student (pname,pwd,age,address,sex) VALUE(#{pname},#{pwd},#{age},#{address},${sex})
+      </insert>
+
+      <delete id="delstudent" parameterType="StudentEntity" >
+          DELETE  FROM student  WHERE pid=#{pid}
+      </delete>
+      <select id="selectype"  resultType="Type">
+          SELECT *  from type
+      </select>-->
+
+</mapper>

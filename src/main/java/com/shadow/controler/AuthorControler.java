@@ -21,16 +21,9 @@ public class AuthorControler {
     //查询所有
     @ResponseBody
     @RequestMapping("dd")
-    public void selectall(HttpServletResponse response) {
+    public List<AuthorizationEntity> selectall(HttpServletResponse response) {
         List<AuthorizationEntity> list =authorDao.selectall();
-        for (AuthorizationEntity entity : list) {
-            System.out.println(entity.getAnthor_id());
-        }
-        try {
-            response.getWriter().write(JSON.toJSONString(list));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return list;
     }
 
 }

@@ -25,9 +25,9 @@
     $(function () {
         $("#tableDiv").bootstrapTable({
             url:'Config_datadict_query4List.do?config_id=99',
+//            columns:true,
             data:'json',
             search:true,
-            columns:,
 
 
         })

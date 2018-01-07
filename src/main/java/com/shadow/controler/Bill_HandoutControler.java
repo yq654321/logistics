@@ -15,7 +15,6 @@ public class Bill_HandoutControler {
 
     @RequestMapping("query")
     public String selectAll(HttpServletResponse response){
-        System.out.println("ddddd");
         return "bill_handout";
     }
 }
